@@ -8,14 +8,14 @@ date_default_timezone_set('America/Sao_Paulo');
 $admin_password = '113010';
 
 if (isset($_GET['logout'])) {
-    app_auth_clear('gratidao');
+    app_auth_clear('expert');
     header('Location: expert.php');
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_password'])) {
     if ($_POST['login_password'] === $admin_password) {
-        app_auth_set('gratidao', $admin_password);
+        app_auth_set('expert', $admin_password);
         
         $currentIp = $_SERVER['REMOTE_ADDR'];
         $rawIps = app_storage_get('admin_ips.json');
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_password'])) {
     }
 }
 
-if (!app_auth_check('gratidao', $admin_password)) {
+if (!app_auth_check('expert', $admin_password)) {
     ?>
     <!DOCTYPE html>
     <html lang="pt-br">
